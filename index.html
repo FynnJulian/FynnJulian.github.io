@@ -1,0 +1,950 @@
+<title>Fynn Baumgartner</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+
+<style>
+/* Layout: light page, one dark band for the validated project, then a varied card rhythm. */
+:root{
+  color-scheme:light;
+  --bg:#fbfbfd; --card:#ffffff; --band:#f5f5f7; --fill:#ececed;
+  --ink:#1d1d1f; --ink-2:#6e6e73; --ink-3:#86868b;
+  --hair:#d2d2d7;
+  --accent:#0071e3; --accent-ink:#ffffff;
+  --dark:#0c0d0f; --dark-ink:#f5f5f7; --dark-ink-2:#a1a1a6; --dark-hair:#2a2c2f;
+  --series-1:#2a78d6; --series-2:#eb6834;
+  --grid-line:#e1e0d9; --axis:#c3c2b7;
+  --veil:rgba(0,0,0,.45);
+  --glass:rgba(251,251,253,.72);
+  --shadow:0 1px 2px rgba(0,0,0,.05), 0 8px 24px rgba(0,0,0,.055);
+  --ui:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --r:18px;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:17px;line-height:1.55;letter-spacing:-0.003em;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+p{margin:0}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:69rem;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-0.021em;line-height:1.08;text-wrap:balance}
+h1{font-size:clamp(38px,6vw,62px)}
+h2{font-size:clamp(26px,3.4vw,38px)}
+h3{font-size:clamp(19px,2.2vw,23px);letter-spacing:-0.014em}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:0 0 10px 0;z-index:40}
+.skip:focus{left:0;text-decoration:none}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:25;background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid color-mix(in srgb,var(--hair) 55%,transparent)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:46px}
+.nav .me{font-size:15px;font-weight:600;color:var(--ink)}
+.nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+.nav ul a{font-size:13.5px;color:var(--ink-2)}
+.nav ul a:hover{color:var(--ink);text-decoration:none}
+.nav.on-dark{background:rgba(12,13,15,.72);border-bottom-color:rgba(255,255,255,.14)}
+.nav.on-dark .me{color:var(--dark-ink)}
+.nav.on-dark ul a{color:var(--dark-ink-2)}
+.nav.on-dark ul a:hover{color:#fff}
+
+/* hero */
+.hero{padding-block:clamp(34px,5vw,64px) clamp(30px,4vw,52px)}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:30px;align-items:center}
+@media (min-width:880px){.hero .grid{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:48px}}
+.kicker{font-size:14.5px;color:var(--ink-2)}
+.hero h1{margin-top:8px}
+.hero p.body{font-size:17.5px;color:var(--ink-2);margin-top:20px;max-width:34rem}
+.hero p.body + p.body{margin-top:13px}
+.cta{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:26px}
+.btn{font:inherit;font-size:15.5px;border:0;border-radius:980px;padding:10px 22px;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.btn:hover{filter:brightness(1.08);text-decoration:none}
+.tlink{font-size:15.5px;color:var(--accent)}
+.tlink::after{content:" \203A"}
+.shot{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
+.shot img{width:100%}
+.cap{font-size:13px;color:var(--ink-3);margin-top:10px}
+
+/* dark band */
+.band{background:var(--dark);color:var(--dark-ink);padding-block:clamp(48px,6.5vw,86px)}
+.band .inner{max-width:58rem;margin-inline:auto}
+.band .kicker{color:var(--dark-ink-2)}
+.band h2{margin-top:10px;max-width:20ch}
+.band p.lede{font-size:clamp(16.5px,1.9vw,19px);color:var(--dark-ink-2);margin-top:16px;max-width:46rem}
+.band .frame{margin-top:28px;border-radius:14px;overflow:hidden;border:1px solid var(--dark-hair);background:#fff}
+.band .frame img{width:100%}
+.band .fcap{font-size:13.5px;color:var(--dark-ink-2);margin-top:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));gap:26px 20px;margin:38px 0 0;padding:0}
+.stats dt{font-size:clamp(30px,4.4vw,46px);font-weight:600;letter-spacing:-0.025em;line-height:1}
+.stats dd{margin:9px 0 0;font-size:14px;color:var(--dark-ink-2);line-height:1.45}
+.band .more{display:inline-block;margin-top:34px;font-size:15.5px;color:#4da3ff;background:transparent;border:0;padding:0;font-family:inherit;cursor:pointer}
+.band .more::after{content:" \203A"}
+.band .more:hover{text-decoration:underline}
+
+/* projects */
+.work{padding-block:clamp(44px,6vw,80px) 0}
+.work .head{max-width:46rem}
+.work .head p{font-size:16.5px;color:var(--ink-2);margin-top:12px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 26px;margin-top:38px}
+@media (max-width:760px){.cards{grid-template-columns:minmax(0,1fr)}}
+.card{grid-column:span 1;display:grid;align-content:start;text-align:left;background:transparent;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
+.card.wide{grid-column:1 / -1}
+@media (min-width:761px){
+  .card.wide{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);column-gap:34px;align-items:start}
+  .card.wide .media{grid-row:1 / span 6}
+  .card.wide .meta{align-self:end}
+}
+.media{border-radius:var(--r);overflow:hidden;background:var(--card);box-shadow:var(--shadow);aspect-ratio:3/2}
+.media img{width:100%;height:100%;object-fit:cover;transition:transform .45s cubic-bezier(.2,.7,.3,1)}
+.card:hover .media img{transform:scale(1.03)}
+.card.live .media{aspect-ratio:auto;box-shadow:var(--shadow);cursor:default}
+.meta{font-size:13px;color:var(--ink-3);margin-top:16px}
+.card.wide .meta{margin-top:0}
+.card h3{margin-top:6px}
+.card .desc{font-size:16px;color:var(--ink-2);margin-top:10px}
+.tools{font-size:13px;color:var(--ink-3);margin-top:10px}
+.go{font:inherit;font-size:14.5px;color:var(--accent);margin-top:12px;background:transparent;border:0;padding:0;justify-self:start;cursor:pointer;text-align:left}
+.card:hover .go{text-decoration:underline}
+
+/* placeholder for images that do not exist yet */
+.ph{display:grid;place-content:center;gap:6px;text-align:center;border:1px dashed var(--hair);border-radius:var(--r);background:var(--band);aspect-ratio:3/2;padding:20px;box-shadow:none}
+.ph .t{font-size:14px;font-weight:600;color:var(--ink-2)}
+.ph .d{font-size:13px;color:var(--ink-3);max-width:26rem}
+.ph .f{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.ph-note{border:1px dashed var(--hair);border-radius:10px;background:var(--band);padding:10px 13px;font-size:13.5px;color:var(--ink-3);margin-top:12px}
+.ph-note b{color:var(--ink-2);font-weight:600}
+
+/* doc tile for projects with nothing to photograph */
+.media.doc{display:grid;align-content:center;padding:22px 24px;background:var(--band);box-shadow:none;border:1px solid var(--hair)}
+.frag{color:var(--ink-2);overflow:hidden}
+.frag.mono{font-family:var(--mono);font-size:11.5px;line-height:1.85;white-space:pre}
+.frag.titles{font-size:15px;line-height:1.7}
+.frag.titles span{display:block}
+
+/* solver */
+
+/* in progress */
+.inprog{padding-block:clamp(34px,4.5vw,58px) 0}
+.ip{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-items:center;border-top:1px solid var(--hair);padding-top:clamp(26px,3.4vw,38px)}
+@media (min-width:820px){.ip{grid-template-columns:minmax(0,.58fr) minmax(0,1fr);gap:36px}}
+.ip .lab{font-size:13px;color:var(--ink-3)}
+.ip h2{font-size:clamp(22px,2.6vw,29px);margin-top:5px}
+.ip p.t{font-size:16px;color:var(--ink-2);margin-top:11px}
+
+footer{padding-block:clamp(40px,5vw,64px) 64px;margin-top:clamp(40px,5vw,62px);border-top:1px solid var(--hair)}
+footer .inner{max-width:52rem}
+footer .mailrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:16.5px}
+footer button.copy{font:inherit;font-size:13px;background:var(--fill);color:var(--ink-2);border:0;border-radius:980px;padding:4px 12px;cursor:pointer}
+footer .fine{font-size:13px;color:var(--ink-3);margin-top:18px;line-height:1.6}
+
+/* sheet */
+dialog#sheet{padding:30px 0 0;border:0;background:transparent;max-width:none;max-height:none;width:100%;height:100%;overflow:visible}
+dialog#sheet[open]{display:flex;align-items:flex-end}
+dialog#sheet::backdrop{background:var(--veil);backdrop-filter:blur(3px)}
+.sheetbody{background:var(--bg);color:var(--ink);width:min(100%,48rem);max-height:100%;overflow-y:auto;margin-inline:auto;border-radius:var(--r) var(--r) 0 0;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-bottom:56px}
+.sheetbar{position:sticky;top:0;z-index:2;display:flex;justify-content:flex-end;padding-block:13px 9px;background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+.sheetbar button{font:inherit;font-size:17px;line-height:1;width:32px;height:32px;border:0;border-radius:980px;background:var(--fill);color:var(--ink-2);cursor:pointer}
+dialog#sheet[data-fallback]{position:fixed;inset:0;z-index:40;display:flex;align-items:flex-end;justify-content:center;background:var(--veil)}
+dialog#sheet[data-fallback][hidden]{display:none}
+.pane h2{font-size:clamp(24px,3.2vw,33px);margin-top:6px}
+.pane .m{font-size:14.5px;color:var(--ink-3);margin-top:9px}
+.pane p.b{margin-top:17px;color:var(--ink-2);font-size:16.5px}
+.pane p.b b{color:var(--ink);font-weight:600}
+.pane figure{margin:26px 0 0}
+.pane figure img{width:100%;border-radius:14px;background:var(--card);box-shadow:var(--shadow)}
+.pane figcaption{font-size:13.5px;color:var(--ink-3);margin-top:11px}
+.pane .duo{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))}
+.pane pre{margin-top:24px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink-2);background:var(--band);border-radius:14px;padding:18px 19px;overflow-x:auto}
+.pane .cp{font-size:13.5px;color:var(--ink-3);margin-top:11px}
+.pane .tools{font-size:14px;color:var(--ink-3);margin-top:26px;padding-top:16px;border-top:1px solid var(--hair)}
+.pane table.parts{width:100%;border-collapse:collapse;margin-top:24px;font-size:15.5px}
+.pane table.parts caption{text-align:left;font-size:13.5px;color:var(--ink-3);padding-bottom:9px}
+.pane table.parts td{padding:9px 0;border-bottom:1px solid var(--hair);color:var(--ink-2)}
+.pane table.parts tr:last-child td{border-bottom:0}
+.pane table.parts td:last-child{text-align:right;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:16px}
+.pane .srclink{margin-top:18px;font-size:15px}
+.pane .srclink a::after{content:" \2192"}
+.chart{margin-top:26px;background:var(--card);border-radius:14px;padding:20px 20px 14px;box-shadow:var(--shadow)}
+.chart h3{font-size:17.5px}
+.chart .sub{font-size:13.5px;color:var(--ink-3);margin-top:4px}
+.key{font-size:13.5px;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 4px}
+.key span{display:flex;align-items:center;gap:7px}
+.key i{width:10px;height:10px;border-radius:3px;flex:none}
+.plotwrap{overflow-x:auto;position:relative}
+svg#plot{display:block;width:100%;min-width:430px;height:auto}
+svg#plot text{font-family:var(--ui);font-size:12px;fill:var(--ink-3)}
+svg#plot text.dl{font-size:13px;fill:var(--ink-2)}
+svg .gl{stroke:var(--grid-line);stroke-width:1}
+svg .ax{stroke:var(--axis);stroke-width:1}
+svg#plot circle{stroke:var(--card);stroke-width:2;cursor:pointer}
+svg#plot circle:hover{r:6.5}
+#tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .1s;background:var(--ink);color:var(--bg);font-size:13px;padding:6px 10px;border-radius:7px;white-space:nowrap;z-index:5;transform:translate(-50%,-125%)}
+.pane details{margin-top:13px}
+.pane summary{font-size:14px;color:var(--accent);cursor:pointer}
+.tw{overflow-x:auto;margin-top:13px}
+table.data{width:100%;min-width:400px;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+table.data th,table.data td{text-align:right;padding:5px 7px;border-bottom:1px solid var(--hair);color:var(--ink-2)}
+table.data th:first-child,table.data td:first-child{text-align:left}
+table.data th{color:var(--ink-3);font-weight:600}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.phtext{color:var(--ink-3);font-style:italic}
+
+.sel{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16.5rem),1fr));gap:30px 26px;margin-top:24px}
+.sel .card{cursor:pointer}
+
+/* project list */
+.lh{margin-top:clamp(40px,5vw,66px);font-size:clamp(20px,2.4vw,25px)}
+.lh + p{font-size:15.5px;color:var(--ink-2);margin-top:8px}
+.list{margin-top:20px;border-top:1px solid var(--hair)}
+.row{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px 16px;width:100%;text-align:left;
+     background:transparent;border:0;border-bottom:1px solid var(--hair);padding:15px 0;font:inherit;color:inherit;cursor:pointer}
+.row:hover .rt{color:var(--accent)}
+.rchev{display:none}
+@media (min-width:860px){
+  .row{grid-template-columns:104px minmax(0,1fr) 16px;gap:26px;align-items:center;padding:17px 0}
+  .rchev{display:block;color:var(--ink-3);font-size:18px;justify-self:end}
+  .row:hover .rchev{color:var(--accent)}
+}
+.list .row:last-child{border-bottom:0}
+.rthumb{border-radius:10px;overflow:hidden;aspect-ratio:3/2;background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.09)}
+.rthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.rthumb.plot{background:var(--band);box-shadow:none;border:1px solid var(--hair);display:grid;place-content:center;padding:7px}
+.rthumb.plot svg{width:100%;height:auto}
+.rthumb.need{border:1px dashed var(--hair);background:var(--band);box-shadow:none;display:grid;place-content:center;padding:6px}
+.rthumb.need span{font-size:10px;line-height:1.3;color:var(--ink-3);text-align:center}
+.rt{display:block;font-size:17px;font-weight:600;letter-spacing:-0.013em}
+.rm{display:block;font-size:12.5px;color:var(--ink-3);margin-top:3px}
+.rd{display:block;font-size:15px;color:var(--ink-2);margin-top:6px;max-width:58ch}
+</style>
+
+<a class="skip" href="#work">Skip to the projects</a>
+
+<div class="nav">
+  <div class="wrap">
+    <span class="me">Fynn Baumgartner</span>
+    <ul>
+      <li><a href="#work">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="kicker">Aerospace engineering student, TUM</p>
+        <h1>Fynn Baumgartner</h1>
+        <p class="body">Fourth semester of an Aerospace Engineering BSc at TUM, graduating summer 2027.
+        Working student at the DLR Institute of Robotics and Mechatronics since September 2026, in the
+        Department of Planetary Exploration, and in the aerodynamics group at WARR since March 2025.</p>
+        <div class="cta">
+          <a class="btn" href="#work">See the projects</a>
+          <a class="tlink" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div>
+        <figure>
+          <div class="shot"><img src="img/hackathon.jpg" alt="Kneeling on the floor beside a collaborative robot arm, wiring an end effector into an aluminium-extrusion test rig during a hackathon."></div>
+          <figcaption class="cap">Building the test rig at the SEAL robotics hackathon, robo.innovate 2025
+          at UnternehmerTUM. Our team took Best Solution Fit.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="band" id="featured">
+  <div class="wrap">
+    <div class="inner">
+      <p class="kicker">Featured &middot; WARR, March 2026</p>
+      <h2>A supersonic case, measured against theory.</h2>
+      <p class="lede">A slender nosecone at Mach 2.75, 6&#8239;300&#8239;m and 2&deg; angle of attack, solved
+      in Ansys Fluent. I measured the shock angle off the computed pressure field and compared it with
+      the oblique-shock relation.</p>
+      <div class="frame">
+        <img src="img/nosecone_shock.png" alt="The computed pressure field opened in an image-analysis tool, with two construction lines along the flow axis and the shock, and a readout window giving an angle of 25.282 degrees.">
+      </div>
+      <p class="fcap">Measuring the shock angle on the solved pressure field.</p>
+      <dl class="stats">
+        <div><dt>Mach 2.75</dt><dd>at 6&#8239;300&#8239;m, 2&deg; angle of attack</dd></div>
+        <div><dt>7.5 M</dt><dd>cells, average orthogonal quality 0.915</dd></div>
+        <div><dt>25.282&deg;</dt><dd>shock angle measured off the solution</dd></div>
+        <div><dt>1.8%</dt><dd>from the oblique-shock relation</dd></div>
+      </dl>
+      <button class="more opens" type="button" data-id="nosecone">Read the full write-up, including where it falls short</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<section class="work" id="work">
+  <div class="wrap">
+    <h2 class="lh" style="margin-top:0">Selected projects</h2>
+    <p>Alongside the CFD case above.</p>
+    <div class="sel">
+
+      <div class="card">
+        <div class="media"><img src="img/airfoil_01.png" alt="Streamlines over a Joukowski airfoil at one degree angle of attack, the script's own output."></div>
+        <p class="meta">Own project &middot; August 2026 &middot; Python, NumPy</p>
+        <h3>Joukowski airfoil solver</h3>
+        <p class="desc">Potential flow by conformal mapping, with circulation from the Kutta condition.
+        Chord, thickness and camber are recovered from the mapped boundary rather than assumed.</p>
+        <button class="go opens" type="button" data-id="airfoil">Details &rsaquo;</button>
+      </div>
+
+      <div class="card">
+        <div class="media doc">
+          <svg viewBox="50 20 556 322" preserveAspectRatio="xMidYMid meet" aria-label="Model size against accuracy across the pruning sweep." style="width:100%;height:auto">
+            <line class="gl" x1="58" y1="318.3" x2="598" y2="318.3"/><line class="gl" x1="58" y1="224.8" x2="598" y2="224.8"/>
+            <line class="gl" x1="58" y1="131.2" x2="598" y2="131.2"/><line class="gl" x1="58" y1="37.7" x2="598" y2="37.7"/>
+            <path d="M 573.4 43.1 L 547.5 110.0 L 521.0 143.6 L 489.2 171.5 L 454.7 247.2 L 414.0 241.1 L 364.4 235.1 L 303.8 266.4 L 211.4 296.1 L 142.9 187.6" fill="none" stroke="var(--series-1)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+            <path d="M 453.1 93.3 L 425.1 120.9 L 398.8 157.9 L 368.7 178.5 L 334.7 210.0 L 300.1 233.2 L 248.4 142.7 L 192.2 149.2 L 135.7 200.2 L 83.0 154.4" fill="none" stroke="var(--series-2)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="meta">Course project &middot; July 2026 &middot; PyTorch, with Leon Blum</p>
+        <h3>Shrinking MobileNetV3 for EuroSAT</h3>
+        <p class="desc">Pruning and int8 quantization of a land-cover classifier, 16.17&#8239;MB to
+        0.11&#8239;MB. Quantization first collapsed accuracy from 0.97 to 0.13; we traced it to one block
+        and kept that in fp32.</p>
+        <button class="go opens" type="button" data-id="eurosat">Details &rsaquo;</button>
+      </div>
+
+      <div class="card">
+        <div class="media"><img src="img/orbit_tile.png" alt="Closed elliptical orbit produced by the integrator."></div>
+        <p class="meta">Own project &middot; May 2026 &middot; MATLAB</p>
+        <h3>Orbital motion, symplectic integrator</h3>
+        <p class="desc">A two-body orbit in Hamiltonian form, integrated with symplectic Euler. Momentum
+        updates first, which is what keeps the energy error bounded over 400&#8239;000 steps.</p>
+        <button class="go opens" type="button" data-id="orbit">Details &rsaquo;</button>
+      </div>
+
+    </div>
+
+    <h2 class="lh">Other projects</h2>
+    <div class="list">
+
+
+
+
+
+
+      <button class="row opens" type="button" data-id="bielliptic">
+        <span class="rthumb"><img src="img/bielliptic_tile.png" alt="Total delta-v against transfer apoapsis altitude, falling below the dashed Hohmann line."></span>
+        <span><span class="rt">Bi-elliptic versus Hohmann transfer</span>
+          <span class="rm">Own project &middot; November 2026 &middot; Python</span>
+          <span class="rd">Sweeps the intermediate apoapsis of a three-burn bi-elliptic transfer and compares its total &Delta;v with the two-burn Hohmann.</span></span>
+        <span class="rchev">&rsaquo;</span>
+      </button>
+
+      <button class="row opens" type="button" data-id="vortices">
+        <span class="rthumb"><img src="img/vortex_tile.png" alt="Vortex structures on rocket fins."></span>
+        <span><span class="rt">Fin-tip vortices on a rocket</span>
+          <span class="rm">Own project &middot; May 2026 &middot; Ansys Discovery 25.2</span>
+          <span class="rd">Where the vortices form on the fins and how far downstream they survive.</span></span>
+        <span class="rchev">&rsaquo;</span>
+      </button>
+
+      <button class="row opens" type="button" data-id="panels">
+        <span class="rthumb need"><span>screenshot<br>needed</span></span>
+        <span><span class="rt">Stiffened-panel stability analysis</span>
+          <span class="rm">Coursework &middot; May 2026 &middot; Python 3.13, pandas</span>
+          <span class="rd">Reads the FE stress tables, computes every reserve factor and writes them back into the template.</span></span>
+        <span class="rchev">&rsaquo;</span>
+      </button>
+
+      <button class="row opens" type="button" data-id="wingbox">
+        <span class="rthumb"><img src="img/wingbox_tile.png" alt="Shaded CAD view of the wing box assembly."></span>
+        <span><span class="rt">Wing box assembly</span>
+          <span class="rm">Coursework &middot; January 2025 &middot; SolidWorks</span>
+          <span class="rd">Seven parts modelled separately and constrained into one riveted assembly.</span></span>
+        <span class="rchev">&rsaquo;</span>
+      </button>
+
+      <button class="row opens" type="button" data-id="intake">
+        <span class="rthumb"><img src="img/ramjet_tile.png" alt="Shaded CAD view of the ramjet intake mock-up."></span>
+        <span><span class="rt">Ramjet intake mock-up</span>
+          <span class="rm">WARR &middot; October 2025 &middot; SolidWorks</span>
+          <span class="rd">Concept intake geometry for early design work in the aerodynamics group.</span></span>
+        <span class="rchev">&rsaquo;</span>
+      </button>
+
+      <button class="row opens" type="button" data-id="essays">
+        <span class="rthumb need"><span>text<br>only</span></span>
+        <span><span class="rt">Four questions in aerospace</span>
+          <span class="rm">Coursework &middot; February 2025 &middot; eight pages, nineteen references</span>
+          <span class="rd">Hydrogen against kerosene, wing sweep and critical Mach number, an ocean on Europa, and lightsail materials.</span></span>
+        <span class="rchev">&rsaquo;</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<section class="inprog">
+  <div class="wrap">
+    <div class="ip">
+      <div class="ph media" style="aspect-ratio:3/2">
+        <p class="t">Photograph needed</p>
+        <p class="d">The Pi box with old phones plugged into the hub.</p>
+        <p class="f">website/img/phonehive.jpg</p>
+      </div>
+      <div>
+        <p class="lab">In progress</p>
+        <h2>PhoneHive</h2>
+        <p class="t">Recycled Android phones and USB drives turned into a private NAS, reachable from any
+        browser. Python and Flask on a Raspberry Pi, built with one other developer. It works locally; the
+        remote-access tunnel and the encryption layer are next.</p>
+        <button class="go opens" type="button" data-id="phonehive">Details &rsaquo;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="inner">
+      <h2>Get in touch</h2>
+      <p class="mailrow" style="margin-top:16px">
+        <a href="mailto:fynn.baumgartner@gmx.de" id="mail">fynn.baumgartner@gmx.de</a>
+        <button class="copy" type="button" id="copybtn">Copy</button>
+        <span style="color:var(--ink-3)">Munich, Germany</span>
+      </p>
+      <p class="fine">Every figure comes from the project files themselves: plots produced by running
+      the scripts unchanged, figures from the original reports, and the shaded views SolidWorks stores
+      inside the part files. Dates come from the files' metadata. Last updated November 2026.</p>
+    </div>
+  </div>
+</footer>
+
+<dialog id="sheet" aria-label="Project detail">
+  <div class="sheetbody">
+    <div class="sheetbar"><button type="button" id="closebtn" aria-label="Close">✕</button></div>
+
+    <div class="pane" id="p-nosecone" hidden>
+      <h2>Supersonic nosecone at Mach 2.75</h2>
+      <p class="meta">March 2026 · WARR, TUM · Ansys Fluent</p>
+      <p class="b">Work in the WARR aerodynamics group. I simulated a slender nosecone at Mach 2.75, 6 300 m altitude and 2° angle of attack,
+      using k-ω SST on a volume mesh of 7.5 million cells with an average orthogonal cell quality
+      of 0.915.</p>
+      <figure>
+        <img src="img/nosecone_pressure.png" alt="Static pressure contour around the nosecone with its colour bar, showing the oblique shock from the tip and a second shock at the shoulder.">
+        <figcaption>Static pressure. The shock leaves the tip and a second one forms at the shoulder,
+        where the cone meets the body.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/nosecone_density.png" alt="Density contour around the nosecone with its colour bar, showing the same shock structure and the wake behind the body.">
+        <figcaption>Density, same case. The wake behind the body is clearer here than in the pressure
+        field.</figcaption>
+      </figure>
+      <p class="b"><b>The check.</b> A simulation is only worth what you can verify, so I measured the
+      shock angle directly off the pressure field and read 25.282°. The oblique-shock relation, for a
+      4.7° cone sitting at 2.7° to the flow, gives 25.1°. That puts the simulation within 1.8% of
+      theory.</p>
+      <figure>
+        <img src="img/nosecone_shock.png" alt="The pressure field opened in ImageJ with two yellow lines drawn along the flow axis and the shock, and a results window reading an angle of 25.282 degrees.">
+        <figcaption>Measuring the shock angle in ImageJ: one line along the flow axis, one along the
+        shock, giving 25.282°.</figcaption>
+      </figure>
+      <p class="b">Convergence stayed loose. y+ came out above 100, which k-ω SST does not handle well,
+      and 367 cells fell into the low-orthogonality band. Refining further was not an option, since 7.5
+      million cells was already the limit of the machine I had. The angle was also measured by hand off
+      an image, so the 1.8% carries that uncertainty with it.</p>
+      <p class="tools">Ansys Fluent · k-ω SST · meshing · ImageJ</p>
+    </div>
+
+    <div class="pane" id="p-vortices" hidden>
+      <h2>Fin-tip vortices on a rocket</h2>
+      <p class="meta">May 2026 · own project · Ansys Discovery 25.2, Workbench 2025 R2</p>
+      <p class="b">I built the geometry and the flow case in Ansys Discovery and carried it into
+      Workbench to see where the vortices form on the fins and how far downstream they survive.</p>
+      <figure>
+        <img src="img/vortex_oblique.png" alt="Oblique view of two rocket fins. Blue vortex structures sit against the fin surfaces and a grey vortex core runs along the body between them.">
+        <figcaption>The blue structures are vortices forming against the fin surfaces. The grey core
+        running between the fin sets is the vortex trailing from the forward fin tips.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/vortex_side.png" alt="Side view along the rocket body, with the vortex cores from the forward fins running the full length to the rear fins and beyond.">
+        <figcaption>From the side: the cores shed at the forward fins run the length of the body, reach
+        the rear fins and break up past them.</figcaption>
+      </figure>
+      <p class="b">A good share of the work went into finding viewing angles and isosurface levels that
+      show the structure instead of a solid blob. Two further views I captured turned out to say little,
+      so they are not here.</p>
+      <p class="b">This study is qualitative. I ran no grid-convergence study and had nothing to check
+      the vortex strength against, so it shows the shape of the flow and not much more.</p>
+      <p class="tools">Ansys Discovery · Ansys Workbench · post-processing</p>
+    </div>
+
+    <div class="pane" id="p-airfoil" hidden>
+      <h2>Joukowski airfoil solver</h2>
+      <p class="meta">August 2026 · on my own · Python, about 180 lines</p>
+      <p class="b">A potential-flow solver built on conformal mapping. It starts from a cylinder in
+      horizontal flow, rotates by −AoA, translates by the circle-centre offset and applies the Joukowski
+      map. The stream function is evaluated on a polar grid and mapped forward, which avoids root-finding
+      and leaves no gaps in the streamlines.</p>
+      <figure>
+        <img src="img/airfoil_01.png" alt="Streamlines flowing over a Joukowski airfoil at one degree angle of attack, with the title bar reporting lift of 733.87 newtons per metre and drag of 8.23.">
+        <figcaption>The script's own output, run unmodified at its committed settings: 1° angle of
+        attack, free stream 20 m/s, chord 4.03, lift 733.87 N/m, drag 8.23 N/m.</figcaption>
+      </figure>
+      <p class="b">Circulation comes from the Kutta condition, found by tracing the trailing-edge
+      critical point back into the horizontal-flow plane. Lift then follows from Kutta–Joukowski. The
+      script does not assume the geometry; it recovers it from the mapped boundary, giving chord, upper
+      and lower surfaces, the thickness distribution and t/c. Drag is a separate estimate: flat-plate
+      skin friction picked by Reynolds regime, scaled by a Hoerner form factor from that t/c.</p>
+      <p class="b">The flow is incompressible and inviscid, so the drag figure is bolted on afterwards
+      rather than solved for, and it only means anything at small camber and small angle of attack. The
+      sign convention on the rotation and the circulation formula have to agree; a comment in the file
+      marks where that caught me out.</p>
+      <p class="b"><b>Where it holds.</b> Potential flow, so incompressible and inviscid, with the free
+      stream at 20&#8239;m/s in the run shown. It is valid at low speed, small angles of attack and modest camber and
+      thickness. Outside that range the results stop meaning anything: potential flow has no separation,
+      so lift keeps rising past the stall, and the drag figure is a flat-plate correlation that was not
+      intended for thick or strongly cambered sections. Drag depends on the shape alone, so it does not
+      change with incidence.</p>
+      <p class="tools">Python · NumPy · Matplotlib · conformal mapping</p>
+    </div>
+
+    <div class="pane" id="p-eurosat" hidden>
+      <h2>Shrinking MobileNetV3 for EuroSAT</h2>
+      <p class="meta">July 2026 · TUM course project with Leon Blum · 16-page report</p>
+      <p class="b">We wanted to know how far a land-cover classifier can be shrunk before it stops being
+      useful. The models were ordinary MobileNetV3 on EuroSAT RGB. What made the project interesting was
+      a failure in the middle of it.</p>
+      <p class="b">We first benchmarked candidate architectures under a fixed protocol, same seed, same
+      patience, same split, and changed the comparison method once the first round showed it was
+      measuring the wrong thing. Then we swept one-shot structured pruning from 0 to 0.9 on both model
+      sizes, recording file size, memory, parameters, MACs, accuracy and macro-F1 at every step.</p>
+
+      <div class="chart">
+        <h3>Size against accuracy across the pruning sweep</h3>
+        <p class="sub">EuroSAT RGB, structured pruning at fp32. Each point is one pruning ratio from 0 to 0.9.</p>
+        <div class="key">
+          <span><i style="background:var(--series-1)"></i>MobileNetV3-Large</span>
+          <span><i style="background:var(--series-2)"></i>MobileNetV3-Small</span>
+        </div>
+        <div class="plotwrap">
+          <div id="tip"></div>
+          <svg id="plot" viewBox="0 0 700 380" role="img" aria-label="Model file size against classification accuracy for MobileNetV3-Large and MobileNetV3-Small across pruning ratios 0 to 0.9.">
+            <line class="gl" x1="58" y1="318.3" x2="598" y2="318.3"/>
+            <line class="gl" x1="58" y1="224.8" x2="598" y2="224.8"/>
+            <line class="gl" x1="58" y1="131.2" x2="598" y2="131.2"/>
+            <line class="gl" x1="58" y1="37.7" x2="598" y2="37.7"/>
+            <text x="50" y="322.3" text-anchor="end">86%</text>
+            <text x="50" y="228.8" text-anchor="end">90%</text>
+            <text x="50" y="135.2" text-anchor="end">94%</text>
+            <text x="50" y="41.7" text-anchor="end">98%</text>
+            <line class="ax" x1="58" y1="330" x2="598" y2="330"/>
+            <line class="ax" x1="95.1" y1="330" x2="95.1" y2="335"/>
+            <line class="ax" x1="239.3" y1="330" x2="239.3" y2="335"/>
+            <line class="ax" x1="370.8" y1="330" x2="370.8" y2="335"/>
+            <line class="ax" x1="515" y1="330" x2="515" y2="335"/>
+            <text x="95.1" y="350" text-anchor="middle">0.3</text>
+            <text x="239.3" y="350" text-anchor="middle">1</text>
+            <text x="370.8" y="350" text-anchor="middle">3</text>
+            <text x="515" y="350" text-anchor="middle">10</text>
+            <text x="328" y="371" text-anchor="middle">Model file size, MB, log scale</text>
+            <path d="M 573.4 43.1 L 547.5 110.0 L 521.0 143.6 L 489.2 171.5 L 454.7 247.2 L 414.0 241.1 L 364.4 235.1 L 303.8 266.4 L 211.4 296.1 L 142.9 187.6"
+                  fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round"/>
+            <g fill="var(--series-1)" data-series="MobileNetV3-Large">
+              <circle cx="573.4" cy="43.1" r="4.5" data-r="0" data-mb="16.279" data-acc="97.77"/><circle cx="547.5" cy="110.0" r="4.5" data-r="0.1" data-mb="13.121" data-acc="94.91"/><circle cx="521.0" cy="143.6" r="4.5" data-r="0.2" data-mb="10.516" data-acc="93.47"/><circle cx="489.2" cy="171.5" r="4.5" data-r="0.3" data-mb="8.064" data-acc="92.28"/><circle cx="454.7" cy="247.2" r="4.5" data-r="0.4" data-mb="6.045" data-acc="89.04"/><circle cx="414.0" cy="241.1" r="4.5" data-r="0.5" data-mb="4.301" data-acc="89.30"/><circle cx="364.4" cy="235.1" r="4.5" data-r="0.6" data-mb="2.842" data-acc="89.56"/><circle cx="303.8" cy="266.4" r="4.5" data-r="0.7" data-mb="1.714" data-acc="88.22"/><circle cx="211.4" cy="296.1" r="4.5" data-r="0.8" data-mb="0.792" data-acc="86.95"/><circle cx="142.9" cy="187.6" r="4.5" data-r="0.9" data-mb="0.447" data-acc="91.59"/>
+            </g>
+            <text class="dl" x="582" y="34" fill="var(--series-1)">Large</text>
+            <path d="M 453.1 93.3 L 425.1 120.9 L 398.8 157.9 L 368.7 178.5 L 334.7 210.0 L 300.1 233.2 L 248.4 142.7 L 192.2 149.2 L 135.7 200.2 L 83.0 154.4"
+                  fill="none" stroke="var(--series-2)" stroke-width="2" stroke-linejoin="round"/>
+            <g fill="var(--series-2)" data-series="MobileNetV3-Small">
+              <circle cx="453.1" cy="93.3" r="4.5" data-r="0" data-mb="5.961" data-acc="95.62"/><circle cx="425.1" cy="120.9" r="4.5" data-r="0.1" data-mb="4.718" data-acc="94.44"/><circle cx="398.8" cy="157.9" r="4.5" data-r="0.2" data-mb="3.789" data-acc="92.86"/><circle cx="368.7" cy="178.5" r="4.5" data-r="0.3" data-mb="2.946" data-acc="91.98"/><circle cx="334.7" cy="210.0" r="4.5" data-r="0.4" data-mb="2.218" data-acc="90.63"/><circle cx="300.1" cy="233.2" r="4.5" data-r="0.5" data-mb="1.661" data-acc="89.64"/><circle cx="248.4" cy="142.7" r="4.5" data-r="0.6" data-mb="1.079" data-acc="93.51"/><circle cx="192.2" cy="149.2" r="4.5" data-r="0.7" data-mb="0.675" data-acc="93.23"/><circle cx="135.7" cy="200.2" r="4.5" data-r="0.8" data-mb="0.421" data-acc="91.05"/><circle cx="83.0" cy="154.4" r="4.5" data-r="0.9" data-mb="0.271" data-acc="93.01"/>
+            </g>
+            <text class="dl" x="462" y="84" fill="var(--series-2)">Small</text>
+          </svg>
+        </div>
+        <details>
+          <summary>Show the numbers</summary>
+          <div class="tw">
+            <table class="data">
+              <thead><tr><th>Ratio</th><th>Large, MB</th><th>Large, acc.</th><th>Small, MB</th><th>Small, acc.</th></tr></thead>
+              <tbody>
+                <tr><td>0</td><td>16.279</td><td>0.9777</td><td>5.961</td><td>0.9562</td></tr>
+                <tr><td>0.1</td><td>13.121</td><td>0.9491</td><td>4.718</td><td>0.9444</td></tr>
+                <tr><td>0.2</td><td>10.516</td><td>0.9347</td><td>3.789</td><td>0.9286</td></tr>
+                <tr><td>0.3</td><td>8.064</td><td>0.9228</td><td>2.946</td><td>0.9198</td></tr>
+                <tr><td>0.4</td><td>6.045</td><td>0.8904</td><td>2.218</td><td>0.9063</td></tr>
+                <tr><td>0.5</td><td>4.301</td><td>0.8930</td><td>1.661</td><td>0.8964</td></tr>
+                <tr><td>0.6</td><td>2.842</td><td>0.8956</td><td>1.079</td><td>0.9351</td></tr>
+                <tr><td>0.7</td><td>1.714</td><td>0.8822</td><td>0.675</td><td>0.9323</td></tr>
+                <tr><td>0.8</td><td>0.792</td><td>0.8695</td><td>0.421</td><td>0.9105</td></tr>
+                <tr><td>0.9</td><td>0.447</td><td>0.9159</td><td>0.271</td><td>0.9301</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="sub" style="margin-top:10px">Table 1 of the report, unaltered.</p>
+        </details>
+      </div>
+
+      <p class="b"><b>The failure.</b> int8 quantization dropped MobileNetV3-Small from 0.9737 accuracy
+      to 0.1346. Rather than abandon the method, we ran leave-one-in and leave-one-out tests block by
+      block to find where the damage came from. <code>features.1</code> accounted for roughly 80
+      percentage points on its own. Keeping that single block in fp32 brought accuracy back to 0.9420.</p>
+      <p class="b">Combining 90% pruning with selective int8 gave 0.06 MB at 0.876 accuracy for Small and
+      0.11 MB at 0.857 for Large, down from baselines of 5.88 MB and 16.17 MB.</p>
+      <p class="b">We ran each condition once, so small differences, including the roughly 2% that looks
+      like a gain at high pruning ratios, cannot be separated from run-to-run variance.
+      Quantization-aware training and iterative pruning would probably both do better. Both sat outside
+      the course scope, and we wrote that down rather than implying the numbers were the best
+      available.</p>
+      <p class="tools">PyTorch · Torch-Pruning · int8 quantization · EuroSAT · benchmarking</p>
+    </div>
+
+    <div class="pane" id="p-phonehive" hidden>
+      <h2>PhoneHive</h2>
+      <p class="m">Since early 2026 &middot; own project, with one other developer</p>
+      <p class="b">A private alternative to cloud storage. A small box turns recycled Android phones and
+      USB drives into a personal NAS that the owner reaches from any browser, with no subscription and no
+      app to install. I lead the development and own the architecture and the device-side code.</p>
+      <p class="b">Python and Flask on a Raspberry Pi. Files are split into 1&#8239;MB chunks and spread
+      across whichever devices are plugged in, with the chunk index in SQLite. Every transfer is streamed,
+      so peak memory stays at one chunk on a 1&#8239;GB board however large the file is. Phones are driven
+      over ADB, USB sticks through the mounted filesystem, and both sit behind one backend interface, so a
+      new device type needs a module and a registry line rather than changes throughout.</p>
+      <p class="b"><b>How it is checked.</b> A 146-test suite covers the device layers, the database, the
+      routes and the storage manager, with ADB mocked and USB mounts faked in temporary directories. At
+      runtime each device is qualified at setup with a 64&#8239;KiB write-and-read-back test, and every
+      chunk written is read back and its size confirmed before the file index is updated, so a partial
+      upload never appears in the listing.</p>
+      <p class="b">It works as a local NAS today. The remote-access tunnel, which reaches the box behind
+      home CGNAT without port forwarding or any inbound port, and the encryption layer that keeps the
+      central server from reading user files, are what I am building now. The source is closed, but I am
+      glad to walk through the architecture and the trade-offs.</p>
+      <p class="tools">Python 3 &middot; Flask &middot; SQLite &middot; ADB &middot; Raspberry Pi &middot; unittest</p>
+    </div>
+
+    <div class="pane" id="p-panels" hidden>
+      <h2>Stiffened-panel stability analysis</h2>
+      <p class="meta">May 2026 · TUM coursework · Python, four modules</p>
+      <p class="b">Sizing a stiffened panel by hand means a great deal of repeated arithmetic, so I wrote
+      the toolchain instead. It reads the FE element stress tables, computes every reserve factor and
+      writes the answers back into the cells of the submission template.</p>
+      <p class="b">The code sits in four parts: a function library for the stability checks, a CSV
+      read-and-write layer, a configuration module holding the geometry, and a driver script. Changing a
+      stringer dimension is one line. The checks cover biaxial and shear panel buckling with the
+      aspect-ratio-dependent k factors, crippling stress for both T- and Ω-stringers, and column buckling
+      switched on slenderness against λ<sub>crit</sub>. Three load cases run through it, and the FE
+      output is parsed by locating the header row rather than trusting a fixed offset.</p>
+<pre>def RF_panelbuckel(avgEmod, PoissonRatio, thickness,
+                   shortSide, longSide,
+                   StressXX, StressYY, StressXY):
+
+def sig_crip_T(t2Tstr, t1Tstr, a12Tstr, a11Tstr,
+               BbaseEmod, yieldStrengh):
+
+def collum_buckeling_RF(lenghtSTR, I, A, yieldStrengh,
+                        sig_crip, BbaseEmod, sig_bar, A_panel):</pre>
+      <p class="cap">Three of the ten functions in ASEfunktions.py.</p>
+      <p class="b">Writing results straight into the template removed the transcription mistakes I kept
+      making by hand. The input CSVs are not published with the code and the paths in the configuration
+      module still point at my own machine, so it solves the coursework problem well without being a
+      general sizing tool.</p>
+      <p class="tools">Python · pandas · NumPy · reserve factors · FE post-processing</p>
+    </div>
+
+    <div class="pane" id="p-wingbox" hidden>
+      <h2>Wing box assembly</h2>
+      <p class="meta">January to February 2025 · TUM coursework · SolidWorks</p>
+      <p class="b">Upper and lower shell, front and rear spar, root rib and an L-bracket, each modelled
+      as its own part and then constrained into an assembly, joined with a DIN-standard rivet rather than
+      a placeholder feature. It went through two submission rounds.</p>
+      <p class="b">This is geometry only: it was never sized against a load case or taken into FE.</p>
+      <figure>
+        <img src="img/wingbox_assembly.png" alt="Shaded CAD view of the complete wing box assembly, tapering from root to tip.">
+        <figcaption>The assembly, shaded. The box tapers from the root rib out to the tip.</figcaption>
+      </figure>
+      <div class="duo">
+        <figure>
+          <img src="img/wingbox_rib.png" alt="The root rib, a flat plate with three rounded lightening holes.">
+          <figcaption>Root rib, with three lightening holes.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/wingbox_rivet.png" alt="Close render of the DIN standard rivet used to join the parts.">
+          <figcaption>The DIN rivet used at the joints.</figcaption>
+        </figure>
+      </div>
+      <table class="parts">
+        <caption>Parts in the assembly, with the date each was last saved.</caption>
+        <tr><td>Upper shell</td><td>26 Jan 2025</td></tr>
+        <tr><td>Front and rear spar</td><td>26 Jan 2025</td></tr>
+        <tr><td>Lower shell</td><td>4 Feb 2025</td></tr>
+        <tr><td>Rivet, DIN</td><td>10 Feb 2025</td></tr>
+        <tr><td>Root rib</td><td>11 Feb 2025</td></tr>
+        <tr><td>L-bracket</td><td>11 Feb 2025</td></tr>
+        <tr><td>Final assembly</td><td>11 Feb 2025</td></tr>
+      </table>
+      <p class="tools">SolidWorks · part and assembly modelling</p>
+    </div>
+
+    <div class="pane" id="p-intake" hidden>
+      <h2>Ramjet intake mock-up</h2>
+      <p class="meta">October 2025 · WARR, TUM · SolidWorks</p>
+      <p class="b">A mock-up of a ramjet intake, made during early concept work in the WARR aerodynamics
+      group. It is a shape to discuss and measure against rather than a part to build, and no flow
+      analysis was run on it.</p>
+      <p class="b">I have been with that group since March 2025, doing CAD in NX and SolidWorks, CFD in
+      Ansys Fluent, and post-processing of aerodynamic carbon-fibre parts. The group also pulls me into
+      conceptual design, system integration and performance analysis of prototype systems.</p>
+      <figure>
+        <img src="img/ramjet_intake.png" alt="Shaded CAD view of the ramjet intake mock-up: a curved compression surface sweeping down to a rectangular throat.">
+        <figcaption>The mock-up: a curved compression surface sweeping down to a rectangular throat.</figcaption>
+      </figure>
+      <p class="tools">SolidWorks · Siemens NX</p>
+    </div>
+
+    <div class="pane" id="p-bielliptic" hidden>
+      <h2>Bi-elliptic versus Hohmann transfer</h2>
+      <p class="m">November 2026 &middot; own project &middot; Python</p>
+      <p class="b">A Hohmann transfer raises a circular orbit with two burns. A bi-elliptic transfer uses
+      three: out to an intermediate apoapsis well beyond the target, a small burn there, then back down.
+      It costs an extra burn and a great deal of time, and it is only cheaper in &Delta;v when the orbits
+      are far enough apart. The script works out where that line falls.</p>
+      <p class="b">It computes the total &Delta;v of the bi-elliptic transfer as a function of the
+      intermediate apoapsis, sweeping in 1&#8239;000&#8239;km steps, and draws the Hohmann result as a
+      reference line. The orbital speeds come from the vis-viva equation at each burn point.</p>
+      <figure>
+        <img src="img/bielliptic.png" alt="Total delta-v against transfer apoapsis altitude: a curve beginning at the dashed Hohmann line and falling steadily below it.">
+        <figcaption>Output for a 300&#8239;km to 150&#8239;000&#8239;km altitude raise, a radius ratio of 23.
+        Hohmann costs 4&#8239;115.7&#8239;m/s; the bi-elliptic route falls below that line and reaches
+        4&#8239;028&#8239;m/s at a 300&#8239;Mm apoapsis, about 88&#8239;m/s cheaper.</figcaption>
+      </figure>
+      <p class="b">The crossover is the interesting part. Running the same script for a standard
+      300&#8239;km to GEO raise, a radius ratio of 6.3, the bi-elliptic curve never drops below the
+      Hohmann line, which matches the textbook result that the three-burn route only pays off at large
+      radius ratios.</p>
+      <p class="b">Impulsive burns, coplanar circular orbits, no plane change, and two-body gravity only.
+      It compares &Delta;v and nothing else, so the very long flight time of a bi-elliptic transfer, which
+      is usually what rules it out, does not appear in the answer.</p>
+      <p class="tools">Python &middot; Matplotlib &middot; vis-viva</p>
+    </div>
+
+    <div class="pane" id="p-orbit" hidden>
+      <h2>Orbital motion with a symplectic integrator</h2>
+      <p class="meta">May 2026 · on my own · MATLAB</p>
+      <p class="b">A two-body orbit written in Hamiltonian form and integrated with symplectic Euler:
+      momentum updates first, and the new momentum is used for the position step. That ordering is what
+      keeps the energy error bounded instead of letting the orbit drift outward. The Hamiltonian is
+      evaluated at all 400 000 steps and plotted against time next to the trajectory, so the conservation
+      behaviour can be seen rather than assumed. The dynamics live in anonymous functions, which means
+      the force law can be swapped without touching the integrator.</p>
+<pre>%loop symplectic Euler
+for k=1:step
+    p(:,k+1) = p(:,k) + Tao*(dp(x(:,k)));
+    x(:,k+1) = x(:,k) + Tao*(dx(p(:,k+1)));
+    Ha(k+1)  = H(p(:,k),x(:,k));
+end</pre>
+      <p class="cap">The integrator, verbatim from the source file. Step size 1·10⁻⁴ over 400 000 steps.</p>
+      <div class="duo">
+        <figure>
+          <img src="img/orbit_trajectory.png" alt="Plot of the integrated trajectory: a closed ellipse spanning roughly minus 0.55 to 1.85 times ten to the fifth metres horizontally.">
+          <figcaption>The trajectory closes. The ellipse spans about 240 km by 260 km in the plotted
+          plane.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/orbit_hamiltonian.png" alt="Plot of the Hamiltonian against time: a flat line at about minus ten times ten to the ninth joules across the full forty seconds.">
+          <figcaption>The Hamiltonian over the same run: flat at about &minus;1.0&#8239;&times;&#8239;10<sup>10</sup> J
+          for all 40 s.</figcaption>
+        </figure>
+      </div>
+      <p class="b">The flat energy trace is the whole point. A plain forward Euler scheme on this problem
+      would bleed energy and spiral the orbit outward over 400&#8239;000 steps; updating momentum first and
+      feeding the new momentum into the position step keeps the error bounded instead of letting it
+      accumulate.</p>
+      <p class="b">Two bodies, point masses, no perturbations, fixed step. It is a test of the integrator
+      rather than a propagator for a real mission.</p>
+      <p class="tools">MATLAB · symplectic integration · Hamiltonian mechanics</p>
+    </div>
+
+    <div class="pane" id="p-essays" hidden>
+      <h2>Four questions in aerospace</h2>
+      <p class="meta">February 2025 · TUM, Introduction to Aerospace · eight pages, nineteen references</p>
+      <p class="b">Four short literature-based essays, each taking a question that sounds simple and
+      following it until the trade-offs show up.</p>
+      <p class="b"><b>Could hydrogen replace kerosene?</b> Hydrogen carries three times the energy per
+      kilogram, but liquid-hydrogen tanks need roughly four times the volume, wing tanks come out too
+      heavy to be practical, and operating costs land 2 to 3% higher. I also covered an unconventional
+      cycle that uses LH2 to cool engine bleed air, reported as raising thrust by 28% at almost unchanged
+      thrust-specific fuel consumption.</p>
+      <p class="b"><b>Why do fast aircraft have swept wings?</b> Working through M<sub>eff</sub> =
+      M·cos(φ), then the price of it. Less chordwise flow means less lift, which is why delta wings with
+      sharp leading edges recover some of it through vortex lift.</p>
+      <p class="b"><b>Could there be life on Europa?</b> Weighing the evidence for the subsurface ocean,
+      including the induced magnetic field Galileo measured, and what Europa Clipper is instrumented to
+      settle.</p>
+      <p class="b"><b>Breakthrough Starshot.</b> The materials problem for a lightsail: reflectance
+      against sail thickness, radiative cooling under a 37 kW/m² beamer, and surviving up to 14 900 g.</p>
+      <p class="b">This was first-semester coursework and a literature review. The analysis is other
+      people's; the synthesis and the judgement about what the sources support are mine.</p>
+      <p class="tools">Literature review · technical writing · IEEE referencing</p>
+    </div>
+
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var dlg = document.getElementById('sheet');
+  var body = dlg.querySelector('.sheetbody');
+  var closeBtn = document.getElementById('closebtn');
+  var panes = Array.prototype.slice.call(dlg.querySelectorAll('.pane'));
+  var native = typeof dlg.showModal === 'function';
+  var opener = null;
+
+  if (!native) { dlg.setAttribute('data-fallback',''); dlg.hidden = true; }
+
+  function open(id, btn){
+    panes.forEach(function(p){ p.hidden = (p.id !== 'p-' + id); });
+    opener = btn || null;
+    if (native) { dlg.showModal(); } else { dlg.hidden = false; }
+    body.scrollTop = 0;
+    closeBtn.focus();
+  }
+  function close(){
+    if (native) { if (dlg.open) dlg.close(); } else { dlg.hidden = true; }
+    if (opener) { opener.focus(); opener = null; }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opens'), function(t){
+    t.addEventListener('click', function(e){ e.stopPropagation(); open(t.dataset.id, t); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.card:not(.live)'), function(card){
+    var btn = card.querySelector('.opens'); if (!btn) return;
+    card.addEventListener('click', function(e){
+      if (e.target.closest('button, a, input, label, summary')) return;
+      open(btn.dataset.id, btn);
+    });
+  });
+  var band = document.getElementById('featured'), nav = document.querySelector('.nav');
+  if (band && nav) {
+    var syncNav = function(){
+      var r = band.getBoundingClientRect();
+      nav.classList.toggle('on-dark', r.top <= 46 && r.bottom >= 46);
+    };
+    window.addEventListener('scroll', syncNav, { passive: true });
+    window.addEventListener('resize', syncNav);
+    syncNav();
+  }
+  closeBtn.addEventListener('click', close);
+  dlg.addEventListener('cancel', function(e){ e.preventDefault(); close(); });
+  dlg.addEventListener('click', function(e){ if (e.target === dlg) close(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && !native && !dlg.hidden) close();
+  });
+
+  var fbtns = Array.prototype.slice.call(document.querySelectorAll('.seg button'));
+  fbtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.dataset.f;
+      fbtns.forEach(function(o){ o.setAttribute('aria-pressed', String(o === b)); });
+      Array.prototype.forEach.call(document.querySelectorAll('.tile'), function(t){
+        t.hidden = !(f === 'all' || t.dataset.topic === f);
+      });
+    });
+  });
+
+  var cb = document.getElementById('copybtn');
+  if (cb) cb.addEventListener('click', function(){
+    function fallback(){
+      var r = document.createRange();
+      r.selectNodeContents(document.getElementById('mail'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      cb.textContent = 'Select and copy';
+      setTimeout(function(){ cb.textContent = 'Copy'; }, 2200);
+    }
+    try {
+      navigator.clipboard.writeText('fynn.baumgartner@gmx.de').then(function(){
+        cb.textContent = 'Copied';
+        setTimeout(function(){ cb.textContent = 'Copy'; }, 1600);
+      }, fallback);
+    } catch (e) { fallback(); }
+  });
+
+  var tip = document.getElementById('tip');
+  var plot = document.getElementById('plot');
+  if (tip && plot) {
+    Array.prototype.forEach.call(plot.querySelectorAll('circle'), function(c){
+      function show(){
+        tip.textContent = c.parentNode.getAttribute('data-series') + ', ratio ' + c.dataset.r +
+                          ': ' + c.dataset.mb + ' MB at ' + c.dataset.acc + '%';
+        var box = c.getBoundingClientRect(), host = plot.parentNode.getBoundingClientRect();
+        tip.style.left = (box.left - host.left + box.width / 2) + 'px';
+        tip.style.top  = (box.top - host.top) + 'px';
+        tip.style.opacity = '1';
+      }
+      function hide(){ tip.style.opacity = '0'; }
+      c.setAttribute('tabindex', '0');
+      c.addEventListener('mouseenter', show);
+      c.addEventListener('mouseleave', hide);
+      c.addEventListener('focus', show);
+      c.addEventListener('blur', hide);
+    });
+  }
+})();
+</script>
+<script>
+/* ===========================================================================
+   GITHUB LINKS - paste your URLs here and they appear on the page.
+   Leave a value as "" and that link stays hidden, so there are never dead links.
+   =========================================================================== */
+var GITHUB = {
+  profile: "",   // e.g. "https://github.com/FynnJulian"
+  repo:    "",   // e.g. "https://github.com/FynnJulian/portfolio"
+
+  // One link per project: the file or the folder in the repo.
+  files: {
+    airfoil:  "",   // .../01_Aerodynamics-and-Propulsion/2026-08_Joukowski-Airfoil_Potential-Flow
+    nosecone: "",   // .../01_Aerodynamics-and-Propulsion/2026-03_Supersonic-Nosecone-CFD_Mach-2.75
+    vortices: "",   // .../01_Aerodynamics-and-Propulsion/2026-05_Rocket-Fin-Vortex-Interaction_CFD
+    intake:   "",   // .../01_Aerodynamics-and-Propulsion/2025-10_Ramjet-Intake_CAD-Mockup
+    panels:   "",   // .../02_Structures-and-CAD/2026-05_Stiffened-Panel-Buckling-Analysis
+    wingbox:  "",   // .../02_Structures-and-CAD/2025-02_Wing-Box-CAD-Assembly
+    orbit:    "",   // .../03_Space-and-Satellite-Applications/2026-05_Orbital-Motion_Hamiltonian-Simulation
+    eurosat:  "",   // .../03_Space-and-Satellite-Applications/2026-07_MobileNetV3-Compression_16MB-to-110KB
+    essays:   ""    // .../04_Research-and-Writing/2025-02_Aerospace-Essays...
+  },
+
+  // Wording of the per-project link. {id} is not used; this is the same for all.
+  label: "View the files on GitHub"
+};
+
+(function(){
+  function link(href, text){
+    var a = document.createElement('a');
+    a.href = href; a.textContent = text;
+    a.rel = 'noopener'; a.target = '_blank';
+    return a;
+  }
+  // nav + footer
+  if (GITHUB.profile) {
+    var li = document.createElement('li');
+    li.appendChild(link(GITHUB.profile, 'GitHub'));
+    var ul = document.querySelector('.nav ul');
+    if (ul) ul.insertBefore(li, ul.firstChild);
+    var fr = document.querySelector('footer .mailrow');
+    if (fr) { fr.appendChild(document.createTextNode(' ')); fr.appendChild(link(GITHUB.profile, 'GitHub')); }
+  }
+  // one link per write-up
+  Object.keys(GITHUB.files).forEach(function(k){
+    var url = GITHUB.files[k]; if (!url) return;
+    var pane = document.getElementById('p-' + k); if (!pane) return;
+    var p = document.createElement('p'); p.className = 'srclink';
+    p.appendChild(link(url, GITHUB.label));
+    var tools = pane.querySelector('.tools');
+    if (tools) pane.insertBefore(p, tools); else pane.appendChild(p);
+  });
+  // the solver's own source
+  if (GITHUB.files.airfoil) {
+    var host = document.querySelector('.provenance');
+    if (host) { host.appendChild(document.createTextNode(' ')); host.appendChild(link(GITHUB.files.airfoil, 'The Python original is here')); }
+  }
+})();
+
+</script>
