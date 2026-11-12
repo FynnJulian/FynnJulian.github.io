@@ -1,5 +1,5 @@
 <title>Fynn Baumgartner</title>
-
+<meta name="claude:viewport-fit-sides" content="cover">
 
 <style>
 /* Layout: light page, one dark band for the validated project, then a varied card rhythm. */
@@ -210,8 +210,10 @@ table.data th{color:var(--ink-3);font-weight:600}
 .rthumb img{width:100%;height:100%;object-fit:cover;display:block}
 .rthumb.plot{background:var(--band);box-shadow:none;border:1px solid var(--hair);display:grid;place-content:center;padding:7px}
 .rthumb.plot svg{width:100%;height:auto}
-.rthumb.need{border:1px dashed var(--hair);background:var(--band);box-shadow:none;display:grid;place-content:center;padding:6px}
-.rthumb.need span{font-size:10px;line-height:1.3;color:var(--ink-3);text-align:center}
+.rthumb.tile{border:1px solid var(--hair);background:var(--band);box-shadow:none;display:grid;align-content:center;padding:8px 9px}
+.rthumb.tile span{display:block;text-align:left;white-space:nowrap;overflow:hidden;color:var(--ink-2)}
+.rthumb.tile.code span{font-family:var(--mono);font-size:8.4px;line-height:1.7}
+.rthumb.tile.topics span{font-size:9.5px;line-height:1.5;letter-spacing:-0.005em}
 .rt{display:block;font-size:17px;font-weight:600;letter-spacing:-0.013em}
 .rm{display:block;font-size:12.5px;color:var(--ink-3);margin-top:3px}
 .rd{display:block;font-size:15px;color:var(--ink-2);margin-top:6px;max-width:58ch}
@@ -235,9 +237,12 @@ table.data th{color:var(--ink-3);font-weight:600}
       <div>
         <p class="kicker">Aerospace engineering student, TUM</p>
         <h1>Fynn Baumgartner</h1>
-        <p class="body">Fourth semester of an Aerospace Engineering BSc at TUM, graduating summer 2027.
-        Working student at the DLR Institute of Robotics and Mechatronics since September 2026, in the
-        Department of Planetary Exploration, and in the aerodynamics group at WARR since March 2025.</p>
+        <p class="body">I am in the fourth semester of an Aerospace Engineering BSc at the Technical
+        University of Munich and will graduate in summer 2027. Much of the work on this page was done
+        outside my coursework, on problems I set up and carried through on my own.</p>
+        <p class="body">Since September 2026 I have been a working student at the DLR Institute of
+        Robotics and Mechatronics, in the Department of Planetary Exploration. I have also worked in the
+        aerodynamics group at WARR since March 2025, where the supersonic case below was run.</p>
         <div class="cta">
           <a class="btn" href="#work">See the projects</a>
           <a class="tlink" href="#contact">Get in touch</a>
@@ -258,7 +263,7 @@ table.data th{color:var(--ink-3);font-weight:600}
   <div class="wrap">
     <div class="inner">
       <p class="kicker">Featured &middot; WARR, March 2026</p>
-      <h2>A supersonic case, measured against theory.</h2>
+      <h2>Supersonic nosecone at Mach 2.75</h2>
       <p class="lede">A slender nosecone at Mach 2.75, 6&#8239;300&#8239;m and 2&deg; angle of attack, solved
       in Ansys Fluent. I measured the shock angle off the computed pressure field and compared it with
       the oblique-shock relation.</p>
@@ -272,7 +277,7 @@ table.data th{color:var(--ink-3);font-weight:600}
         <div><dt>25.282&deg;</dt><dd>shock angle measured off the solution</dd></div>
         <div><dt>1.8%</dt><dd>from the oblique-shock relation</dd></div>
       </dl>
-      <button class="more opens" type="button" data-id="nosecone">Read the full write-up, including where it falls short</button>
+      <button class="more opens" type="button" data-id="nosecone">Read the full write-up</button>
     </div>
   </div>
 </div>
@@ -281,7 +286,7 @@ table.data th{color:var(--ink-3);font-weight:600}
 <section class="work" id="work">
   <div class="wrap">
     <h2 class="lh" style="margin-top:0">Selected projects</h2>
-    <p>Alongside the CFD case above.</p>
+    <p>Together with the CFD case above, these are the projects I would point to first.</p>
     <div class="sel">
 
       <div class="card">
@@ -341,12 +346,12 @@ table.data th{color:var(--ink-3);font-weight:600}
         <span class="rthumb"><img src="img/vortex_tile.png" alt="Vortex structures on rocket fins."></span>
         <span><span class="rt">Fin-tip vortices on a rocket</span>
           <span class="rm">Own project &middot; May 2026 &middot; Ansys Discovery 25.2</span>
-          <span class="rd">Where the vortices form on the fins and how far downstream they survive.</span></span>
+          <span class="rd">A qualitative study of where the vortices form on the fins and how far downstream they survive.</span></span>
         <span class="rchev">&rsaquo;</span>
       </button>
 
       <button class="row opens" type="button" data-id="panels">
-        <span class="rthumb need"><span>screenshot<br>needed</span></span>
+        <span class="rthumb tile code" aria-hidden="true"><span>RF_panelbuckel()</span><span>sig_crip_T()</span><span>sig_crip_O()</span></span>
         <span><span class="rt">Stiffened-panel stability analysis</span>
           <span class="rm">Coursework &middot; May 2026 &middot; Python 3.13, pandas</span>
           <span class="rd">Reads the FE stress tables, computes every reserve factor and writes them back into the template.</span></span>
@@ -365,12 +370,12 @@ table.data th{color:var(--ink-3);font-weight:600}
         <span class="rthumb"><img src="img/ramjet_tile.png" alt="Shaded CAD view of the ramjet intake mock-up."></span>
         <span><span class="rt">Ramjet intake mock-up</span>
           <span class="rm">WARR &middot; October 2025 &middot; SolidWorks</span>
-          <span class="rd">Concept intake geometry for early design work in the aerodynamics group.</span></span>
+          <span class="rd">Concept geometry modelled to support early design work in the aerodynamics group.</span></span>
         <span class="rchev">&rsaquo;</span>
       </button>
 
       <button class="row opens" type="button" data-id="essays">
-        <span class="rthumb need"><span>text<br>only</span></span>
+        <span class="rthumb tile topics" aria-hidden="true"><span>Hydrogen fuel</span><span>Wing sweep</span><span>Europa's ocean</span><span>Lightsails</span></span>
         <span><span class="rt">Four questions in aerospace</span>
           <span class="rm">Coursework &middot; February 2025 &middot; eight pages, nineteen references</span>
           <span class="rd">Hydrogen against kerosene, wing sweep and critical Mach number, an ocean on Europa, and lightsail materials.</span></span>
@@ -384,17 +389,18 @@ table.data th{color:var(--ink-3);font-weight:600}
 <section class="inprog">
   <div class="wrap">
     <div class="ip">
-      <div class="ph media" style="aspect-ratio:3/2">
-        <p class="t">Photograph needed</p>
-        <p class="d">The Pi box with old phones plugged into the hub.</p>
-        <p class="f">website/img/phonehive.jpg</p>
-      </div>
+      <figure>
+        <div class="media" style="aspect-ratio:3/4"><img src="img/phonehive.jpg" alt="A Raspberry Pi 4 in a black case on a wooden table, with a USB stick and two older Android phones plugged into it. One phone shows the PhoneHive file browser open in a web browser."></div>
+        <figcaption class="cap">The current setup: a Raspberry Pi 4 with a USB stick and two retired
+        Android phones as storage. The phone on the left is showing the PhoneHive file browser.</figcaption>
+      </figure>
       <div>
         <p class="lab">In progress</p>
         <h2>PhoneHive</h2>
-        <p class="t">Recycled Android phones and USB drives turned into a private NAS, reachable from any
-        browser. Python and Flask on a Raspberry Pi, built with one other developer. It works locally; the
-        remote-access tunnel and the encryption layer are next.</p>
+        <p class="t">A private network drive assembled from recycled Android phones and USB storage, reachable
+        from any browser. I am building it with one other developer, in Python and Flask on a Raspberry
+        Pi. It runs on a local network today; remote access and the encryption layer are the next pieces
+        of work.</p>
         <button class="go opens" type="button" data-id="phonehive">Details &rsaquo;</button>
       </div>
     </div>
@@ -408,7 +414,7 @@ table.data th{color:var(--ink-3);font-weight:600}
     <div class="inner">
       <h2>Get in touch</h2>
       <p class="mailrow" style="margin-top:16px">
-        <a href="mailto:fynn.baumgartner@gmx.de" id="mail">fynn.baumgartner@gmx.de</a>
+        <a href="mailto:fynn.baumgartner@protonmail.com" id="mail">fynn.baumgartner@protonmail.com</a>
         <button class="copy" type="button" id="copybtn">Copy</button>
         <span style="color:var(--ink-3)">Munich, Germany</span>
       </p>
@@ -644,18 +650,19 @@ def collum_buckeling_RF(lenghtSTR, I, A, yieldStrengh,
                         sig_crip, BbaseEmod, sig_bar, A_panel):</pre>
       <p class="cap">Three of the ten functions in ASEfunktions.py.</p>
       <p class="b">Writing results straight into the template removed the transcription mistakes I kept
-      making by hand. The input CSVs are not published with the code and the paths in the configuration
-      module still point at my own machine, so it solves the coursework problem well without being a
-      general sizing tool.</p>
+      making by hand. The input CSVs are not published with the code, and the panel geometry is fixed in the
+      configuration module, so it solves this coursework problem well without being a general sizing
+      tool.</p>
       <p class="tools">Python · pandas · NumPy · reserve factors · FE post-processing</p>
     </div>
 
     <div class="pane" id="p-wingbox" hidden>
       <h2>Wing box assembly</h2>
       <p class="meta">January to February 2025 · TUM coursework · SolidWorks</p>
-      <p class="b">Upper and lower shell, front and rear spar, root rib and an L-bracket, each modelled
-      as its own part and then constrained into an assembly, joined with a DIN-standard rivet rather than
-      a placeholder feature. It went through two submission rounds.</p>
+      <p class="b">The box is made up of an upper and a lower shell, a front and a rear spar, a root rib
+      and an L-bracket. Each was modelled as its own part and then constrained into an assembly, joined
+      with a DIN-standard rivet rather than a placeholder feature. The model went through two submission
+      rounds.</p>
       <p class="b">This is geometry only: it was never sized against a load case or taken into FE.</p>
       <figure>
         <img src="img/wingbox_assembly.png" alt="Shaded CAD view of the complete wing box assembly, tapering from root to tip.">
@@ -758,8 +765,8 @@ end</pre>
       would bleed energy and spiral the orbit outward over 400&#8239;000 steps; updating momentum first and
       feeding the new momentum into the position step keeps the error bounded instead of letting it
       accumulate.</p>
-      <p class="b">Two bodies, point masses, no perturbations, fixed step. It is a test of the integrator
-      rather than a propagator for a real mission.</p>
+      <p class="b">The model is deliberately narrow: two point masses, no perturbations and a fixed step
+      size. It is a test of the integrator rather than a propagator for a real mission.</p>
       <p class="tools">MATLAB · symplectic integration · Hamiltonian mechanics</p>
     </div>
 
@@ -773,14 +780,15 @@ end</pre>
       heavy to be practical, and operating costs land 2 to 3% higher. I also covered an unconventional
       cycle that uses LH2 to cool engine bleed air, reported as raising thrust by 28% at almost unchanged
       thrust-specific fuel consumption.</p>
-      <p class="b"><b>Why do fast aircraft have swept wings?</b> Working through M<sub>eff</sub> =
-      M·cos(φ), then the price of it. Less chordwise flow means less lift, which is why delta wings with
-      sharp leading edges recover some of it through vortex lift.</p>
-      <p class="b"><b>Could there be life on Europa?</b> Weighing the evidence for the subsurface ocean,
-      including the induced magnetic field Galileo measured, and what Europa Clipper is instrumented to
+      <p class="b"><b>Why do fast aircraft have swept wings?</b> The essay works through M<sub>eff</sub> =
+      M·cos(φ) and then the price paid for it. Less chordwise flow means less lift, which is why delta
+      wings with sharp leading edges recover some of it through vortex lift.</p>
+      <p class="b"><b>Could there be life on Europa?</b> This one weighs the evidence for the subsurface ocean, including the
+      induced magnetic field Galileo measured, and sets out what Europa Clipper is instrumented to
       settle.</p>
-      <p class="b"><b>Breakthrough Starshot.</b> The materials problem for a lightsail: reflectance
-      against sail thickness, radiative cooling under a 37 kW/m² beamer, and surviving up to 14 900 g.</p>
+      <p class="b"><b>Breakthrough Starshot.</b> The last essay takes on the materials problem for a lightsail,
+      setting reflectance against sail thickness, radiative cooling under a 37 kW/m² beamer, and survival
+      of accelerations up to 14 900 g.</p>
       <p class="b">This was first-semester coursework and a literature review. The analysis is other
       people's; the synthesis and the judgement about what the sources support are mine.</p>
       <p class="tools">Literature review · technical writing · IEEE referencing</p>
@@ -860,7 +868,7 @@ end</pre>
       setTimeout(function(){ cb.textContent = 'Copy'; }, 2200);
     }
     try {
-      navigator.clipboard.writeText('fynn.baumgartner@gmx.de').then(function(){
+      navigator.clipboard.writeText('fynn.baumgartner@protonmail.com').then(function(){
         cb.textContent = 'Copied';
         setTimeout(function(){ cb.textContent = 'Copy'; }, 1600);
       }, fallback);
@@ -891,28 +899,38 @@ end</pre>
 </script>
 <script>
 /* ===========================================================================
-   GITHUB LINKS - paste your URLs here and they appear on the page.
-   Leave a value as "" and that link stays hidden, so there are never dead links.
+   SOURCE LINKS - the file or report behind each write-up.
    =========================================================================== */
+var REPO = "https://github.com/FynnJulian/FynnJulian.github.io";
+
 var GITHUB = {
-  profile: "",   // e.g. "https://github.com/FynnJulian"
-  repo:    "",   // e.g. "https://github.com/FynnJulian/portfolio"
+  profile: "https://github.com/FynnJulian",
+  repo:    REPO,
 
-  // One link per project: the file or the folder in the repo.
+  // One entry per write-up: {url, label}. "" hides the link, so there are never dead links.
+  // PDFs are served from this site; code links to the GitHub blob view, which
+  // highlights it and shows the file's history.
   files: {
-    airfoil:  "",   // .../01_Aerodynamics-and-Propulsion/2026-08_Joukowski-Airfoil_Potential-Flow
-    nosecone: "",   // .../01_Aerodynamics-and-Propulsion/2026-03_Supersonic-Nosecone-CFD_Mach-2.75
-    vortices: "",   // .../01_Aerodynamics-and-Propulsion/2026-05_Rocket-Fin-Vortex-Interaction_CFD
-    intake:   "",   // .../01_Aerodynamics-and-Propulsion/2025-10_Ramjet-Intake_CAD-Mockup
-    panels:   "",   // .../02_Structures-and-CAD/2026-05_Stiffened-Panel-Buckling-Analysis
-    wingbox:  "",   // .../02_Structures-and-CAD/2025-02_Wing-Box-CAD-Assembly
-    orbit:    "",   // .../03_Space-and-Satellite-Applications/2026-05_Orbital-Motion_Hamiltonian-Simulation
-    eurosat:  "",   // .../03_Space-and-Satellite-Applications/2026-07_MobileNetV3-Compression_16MB-to-110KB
-    essays:   ""    // .../04_Research-and-Writing/2025-02_Aerospace-Essays...
-  },
+    nosecone:   { url: "projects/nosecone-cfd/CFD-Report_Mach-2.75_6300m_AoA-2deg.pdf",
+                  label: "Open the full report (PDF, 3 pages)" },
+    airfoil:    { url: REPO + "/blob/main/projects/joukowski-airfoil/joukowski_airfoil_flow.py",
+                  label: "Read the solver source on GitHub" },
+    eurosat:    { url: "projects/mobilenet-eurosat/MobileNetV3-Pruning-Quantization_EuroSAT.pdf",
+                  label: "Open the full report (PDF, 16 pages)" },
+    orbit:      { url: REPO + "/blob/main/projects/orbital-motion/symplectic_euler_orbit_simulation.m",
+                  label: "Read the MATLAB source on GitHub" },
+    bielliptic: { url: REPO + "/blob/main/projects/bielliptic-transfer/bielliptic_transfer_solver.py",
+                  label: "Read the solver source on GitHub" },
+    panels:     { url: REPO + "/tree/main/projects/stiffened-panel",
+                  label: "Read the four modules on GitHub" },
+    essays:     { url: "projects/aerospace-essays/Aerospace-Essays_Hydrogen-Swept-Wings-Europa-Starshot.pdf",
+                  label: "Open the essays (PDF, 8 pages)" },
 
-  // Wording of the per-project link. {id} is not used; this is the same for all.
-  label: "View the files on GitHub"
+    // Not published: CAD and Ansys project files, which need the software to open.
+    vortices:   "",
+    intake:     "",
+    wingbox:    ""
+  }
 };
 
 (function(){
@@ -933,18 +951,16 @@ var GITHUB = {
   }
   // one link per write-up
   Object.keys(GITHUB.files).forEach(function(k){
-    var url = GITHUB.files[k]; if (!url) return;
+    var e = GITHUB.files[k]; if (!e) return;
+    var url = (typeof e === 'string') ? e : e.url;
+    var label = (typeof e === 'string') ? 'View the files on GitHub' : e.label;
+    if (!url) return;
     var pane = document.getElementById('p-' + k); if (!pane) return;
     var p = document.createElement('p'); p.className = 'srclink';
-    p.appendChild(link(url, GITHUB.label));
+    p.appendChild(link(url, label));
     var tools = pane.querySelector('.tools');
     if (tools) pane.insertBefore(p, tools); else pane.appendChild(p);
   });
-  // the solver's own source
-  if (GITHUB.files.airfoil) {
-    var host = document.querySelector('.provenance');
-    if (host) { host.appendChild(document.createTextNode(' ')); host.appendChild(link(GITHUB.files.airfoil, 'The Python original is here')); }
-  }
 })();
 
 </script>
